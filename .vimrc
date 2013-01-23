@@ -10,11 +10,6 @@ func! SaveInputData()
   exec 'normal "+gP'
 	exec "w! /tmp/input_data"
 endfunc
-"colorscheme torte
-"colorscheme murphy
-"colorscheme desert 
-"colorscheme desert 
-"colorscheme elflord
 colorscheme desert 
 "set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 "set termencoding=utf-8
