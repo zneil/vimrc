@@ -3,11 +3,11 @@ map <F4> :TlistToggle <CR>
 map <C-F8> :!/usr/bin/ctags -R --c++-kinds=+px --fields=+iaS --extra=+q <CR>
 map <C-s> :w <CR>
 map <F6> :UpdateTypesFile <CR> 
-map <A-.> :tabNext <CR>
-map <A-,> :tabprevious <CR>
+map <A-1> :tabNext <CR>
+nnoremap <F7> :exe 'NERDTreeToggle'<CR>  
 func! SaveInputData()
-  exec "tabnew"
-  exec 'normal "+gP'
+	exec "tabnew"
+	exec 'normal "+gP'
 	exec "w! /tmp/input_data"
 endfunc
 colorscheme desert 
@@ -51,48 +51,6 @@ endif
 "if (has("gui_running")) 
 "   set guifont=Bitstream\ Vera\ Sans\ Mono\ 10 
 "endif 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""新文件标题
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()" 
-""定义函数SetTitle，自动插入文件头 
-func SetTitle() 
-	"如果文件类型为.sh文件 
-	if &filetype == 'sh' 
-		call setline(1,"\#########################################################################") 
-		call append(line("."), "\# File Name: ".expand("%")) 
-		call append(line(".")+1, "\# Author: ") 
-		call append(line(".")+2, "\# mail: ") 
-		call append(line(".")+3, "\# Created Time: ".strftime("%c")) 
-		call append(line(".")+4, "\#########################################################################") 
-		call append(line(".")+5, "\#!/bin/bash") 
-		call append(line(".")+6, "") 
-	else 
-		call setline(1, "/*************************************************************************") 
-		call append(line("."), "	> File Name: ".expand("%")) 
-		call append(line(".")+1, "	> Author:") 
-		call append(line(".")+2, "	> Mail:  ") 
-		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+4, " ************************************************************************/") 
-		call append(line(".")+5, "")
-	endif
-	if &filetype == 'cpp'
-		call append(line(".")+6, "#include<iostream>")
-		call append(line(".")+7, "using namespace std;")
-		call append(line(".")+8, "")
-	endif
-	if &filetype == 'c'
-		call append(line(".")+6, "#include<stdio.h>")
-		call append(line(".")+7, "")
-	endif
-	"	if &filetype == 'java'
-	"		call append(line(".")+6,"public class ".expand("%"))
-	"		call append(line(".")+7,"")
-	"	endif
-	"新建文件后，自动定位到文件末尾
-	autocmd BufNewFile * normal G
-endfunc 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "键盘命令
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -100,7 +58,7 @@ nmap <leader>w :w!<cr>
 nmap <leader>f :find<cr>
 " 映射全选+复制 ctrl+a
 map <C-A> ggVGY
-map! <C-A> <Esc>ggVGY
+"map! <C-A> <Esc>ggVGY
 map <F12> gg=G
 " 选中状态下 Ctrl+c 复制
 vmap <C-c> "+y
@@ -110,12 +68,6 @@ nnoremap <F2> :g/^\s*$/d<CR>
 "nnoremap <C-F2> :vert diffsplit 
 "新建标签  
 map <F3> :tabnew<CR>  
-map <C-F3> :tabn<CR>
-"列出当前目录文件  
-"map <F3> :tabnew .<CR>  
-"打开树状文件目录  
-"map <C-F3> \be  
-"C，C++ 按F5编译运行
 map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
@@ -236,7 +188,7 @@ set wildmenu
 " 使回格键（backspace）正常处理indent, eol, start等
 set backspace=2
 " 允许backspace和光标键跨越行边界
-set whichwrap+=<,>,h,l
+"set whichwrap+=<,>,h,l
 " 可以在buffer的任何地方使用鼠标（类似office中在工作区双击鼠标定位）
 set mouse=a
 set selection=exclusive
@@ -255,11 +207,12 @@ set scrolloff=3
 set smartindent
 " 高亮显示普通txt文件（需要txt.vim脚本）
 au BufRead,BufNewFile *  setfiletype txt
+
 "自动补全
 :inoremap ( ()<ESC>i
 :inoremap ) <c-r>=ClosePair(')')<CR>
-":inoremap { {<CR>}<ESC>O
-":inoremap } <c-r>=ClosePair('}')<CR>
+:inoremap { {<CR>}<ESC>O
+:inoremap } <c-r>=ClosePair('}')<CR>
 :inoremap [ []<ESC>i
 :inoremap ] <c-r>=ClosePair(']')<CR>
 :inoremap " ""<ESC>i
@@ -286,8 +239,6 @@ let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
 let NERDTreeWinPos='right'
 let NERDTreeWinSize=31
-nnoremap f :NERDTreeToggle
-map <F7> :NERDTree<CR>  
 "TagList
 let Tlist_Use_Right_window=1
 let Tlist_Sort_Type="name"
