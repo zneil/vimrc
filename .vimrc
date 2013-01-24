@@ -5,6 +5,13 @@ map <C-s> :w <CR>
 map <F6> :UpdateTypesFile <CR> 
 map <A-1> :tabNext <CR>
 nnoremap <F7> :exe 'NERDTreeToggle'<CR>  
+" Jump between windows
+nmap <M-z> <C-w>W
+nmap <M-x> <C-w>w
+nmap <C-h> <C-w>h
+nmap <C-j> <C-w>j
+nmap <c-k> <C-w>k
+nmap <C-l> <C-w>l
 func! SaveInputData()
 	exec "tabnew"
 	exec 'normal "+gP'
