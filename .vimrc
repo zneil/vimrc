@@ -1,6 +1,7 @@
 map <F9> :call SaveInputData()<CR>
 map <F4> :TlistToggle <CR> 
 map <C-F8> :!/usr/bin/ctags -R --c++-kinds=+px --fields=+iaS --extra=+q <CR>
+map <A-o> :AV <CR>
 map <C-s> :w <CR>
 map <F6> <C-s> :UpdateTypesFile <CR> 
 map <A-1> :tabNext <CR>
