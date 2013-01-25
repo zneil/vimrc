@@ -2,7 +2,7 @@ map <F9> :call SaveInputData()<CR>
 map <F4> :TlistToggle <CR> 
 map <C-F8> :!/usr/bin/ctags -R --c++-kinds=+px --fields=+iaS --extra=+q <CR>
 map <C-s> :w <CR>
-map <F6> :UpdateTypesFile <CR> 
+map <F6> <C-s> :UpdateTypesFile <CR> 
 map <A-1> :tabNext <CR>
 nnoremap <F7> :exe 'NERDTreeToggle'<CR>  
 " Jump between windows
@@ -67,6 +67,10 @@ endif
 map <C-A> ggVGY
 "map! <C-A> <Esc>ggVGY
 map <F12> gg=G
+":inoremap <C-h> <Esc> h i
+"":inoremap <C-j> <Esc> j i
+""'':inoremap <C-k> <Esc> k i
+""':inoremap <C-l> <Esc> l i
 " 选中状态下 Ctrl+c 复制
 vmap <C-c> "+y
 "去空行  
